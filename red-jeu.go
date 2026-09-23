@@ -28,7 +28,7 @@ func main() {
 var b = bell{Spectre : 0, Possede : 0, Hybride : 0}
 var ii = []inventory{
 	{Nom: "Potion de vie", Type: "soin", Effet: 50, Nombre : 0},
-	{Nom: "Potion de MANA", Type: "mana", Effet: 100, Nombre : 0},
+	{Nom: "Potion de MANA", Type: "mana", Effet: 50, Nombre : 0},
 	{Nom: "Potion de poison", Type: "degats", Effet: 10, Nombre : 0},
 	{Nom: "Eau sacrée", Type: "degats", Effet: 20, Nombre : 0},
 	{Nom: "Roche sacrée", Type: "degats", Effet: 40, Nombre : 0},
@@ -60,12 +60,16 @@ func village(p *Personnage) {
 
 		switch choix {
 		case 1:
+			sommeil = 0
 			foret(p, &b)
 		case 2:
+			sommeil = 0
 			AccessMarchand(&b, &ii)
 		case 3:
+			sommeil = 0
 			AccessForgeron(&b, &ii)
 		case 4:
+			sommeil = 0
 			fmt.Println(MAGENTA, "[--- Inventaire ---]", WHITE)
 			afficherinventaire(&ii)
 				fmt.Println("\n[--- Boire une potion ---]")
@@ -102,13 +106,23 @@ func village(p *Personnage) {
 		fmt.Println("Vous buvez", ii[idx].Nom, "! +", ii[idx].Effet, "MANA")
 	}
 		case  5:
+			sommeil = 0
 			fmt.Println(MAGENTA, "[--- Statistiques ---]", WHITE)
 			p.DisplayInfo()
 		case  6:
+			sommeil = 0
 			AccesTryGoblin(p, &b)
 		case  7:
 			sommeil = AccessAuberge(p, sommeil)
+			if sommeil >=10 {
+				fmt.Println("\n |-La Paresse t'emmenera au cimetière...-|")
+				fmt.Println("[-]!!!LE GRAND , LE BEAU , LE FABULEUX , L'EXTRAORDINAIRE LORD KODOÏD EST APPARU!!![-]")
+				bossfinal := Monstre{Nom: "LORD KODOÏD", HP: 1000, Dgt: 30, Boss: true}
+				combat(p, bossfinal, &b)
+				sommeil = 0
+			}
 		case  8:
+			sommeil = 0
 			WhoIsBro()
 		case  9:
 			quit = true

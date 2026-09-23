@@ -3,7 +3,7 @@ package main
 import "fmt"
 
 
-func AccessAuberge(c *Personnage, s int) int {
+func AccessAuberge(c *Personnage, sommeil int) int {
 	fmt.Println("\n")
 	fmt.Println("===🛏️ Auberge 🛏️===")
 	fmt.Println("C'est l'heure de rompiche")
@@ -11,8 +11,8 @@ func AccessAuberge(c *Personnage, s int) int {
 	c.stats.MANA = c.stats.MANAmax
 	fmt.Println("Vous avez récupéré votre santé et mana")
 	fmt.Println("\n")
-	s++
-	switch s {
+	sommeil++
+	switch sommeil {
 	case 1 :
 		fmt.Println("Vous avez fait votre première nuit")
 	case 3 :
@@ -23,5 +23,5 @@ func AccessAuberge(c *Personnage, s int) int {
 		fmt.Println("Attention ! Si vous dormez à nouveau, vous allez le regretter")
 	}
 	fmt.Println("\n")
-	return s
+	return sommeil
 }

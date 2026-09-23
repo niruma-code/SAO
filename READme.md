@@ -17,6 +17,7 @@
 - L'action "Fuir" peut ne pas réussir.
 - Le système de combat reste basique, mais il y a une particularité à chaque fin de combat. Après avoir battu l'ennemi, son âme se libère et le joueur a le choix entre purifier l'âme en l'infusant dans son arme, ou bien la sceller dans une bell (une cloche en français).
 - La purification de l'âme via l'arme du joueur permet d'augmenter une des 3 statistiques selon la race choisie :
+  - Pour l'Elfe : purifier l'âme ne fais rien.
   - Pour le Vampire : purifier l'âme lui ajoute du MANA.
   - Pour l'Humain : purifier l'âme lui ajoute des DGT.
   - Pour le Slime : purifier l'âme lui ajoute des HP.

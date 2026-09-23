@@ -6,19 +6,23 @@ import (
 	"math/rand"
 )
 
-const GREENN   = "\u001b[32m"
+const RESETTT   = "\u001b[0m"
+const REDD      = "\u001b[31m"
+const YELLOWW   = "\u001b[33m"
+const GREENN    = "\u001b[32m"
 
 type Monstre struct {
 	Nom string
 	HP  int
 	Dgt int
+	Boss bool
 }
 
 func foret(p *Personnage, b *bell) {
 	fmt.Println("\n")
 	fmt.Println("[-Vous etes dans la forêt,faites attention rebroussez chemin avant de mourir!-]")
-	fmt.Println("1.Se battre")
-	fmt.Println("2.Rebrousser chemin")
+	fmt.Println("1.", REDD, "Se battre", RESETTT)
+	fmt.Println("2.", YELLOWW, "Rebrousser chemin", RESETTT)
 
 	var choix int
 	fmt.Scan(&choix)
@@ -163,6 +167,9 @@ func combat(p *Personnage, m Monstre, b *bell) {
 		return
 	}
 		case 4:
+			if m.Boss {
+				fmt.Println("\n[!!! IMPOSSIBLE DE FUIR LE GRAND LORD KODÏD !!!]")
+			} else {
 			fmt.Println("Vous tentez de fuir...")
 			if rand.Intn(100) < 80 {
 				fmt.Println("Vous avez réussi à fuir !")
@@ -170,6 +177,7 @@ func combat(p *Personnage, m Monstre, b *bell) {
 			} else {
 				fmt.Println("Vous n'avez pas réussi à fuir !")
 			}
+		}
 		default:
 			fmt.Println("Si tu fais rien, tu vas te faire hagar salement😈")
 		}
