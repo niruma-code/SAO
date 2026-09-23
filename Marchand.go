@@ -1,0 +1,135 @@
+package main
+
+import "fmt"
+
+func AccessMarchand(b *bell, i *[]inventory) {
+	fmt.Println("\n")
+	fmt.Println("=== Marchand d'exorcisme ===")
+	fmt.Println("Âme de spectre : ", b.Spectre)
+	fmt.Println("Âme de possédé : ", b.Possede)
+	fmt.Println("Âme d'hybride : ", b.Hybride)
+	fmt.Println("🍶 Potions : ")
+	fmt.Println("1) Potion de vie : 2 âmes de spectres")
+	fmt.Println("2) Potion de mana : 2 âmes de spectres")
+	fmt.Println("3) Potion de poison :  3 âmes de spectres")
+	fmt.Println("👻 Résonances : ")
+	fmt.Println("4) Eau sacrée : 1 âme d'hybride")
+	fmt.Println("5) Roche sacrée : 2 âmes d'hybrides")
+	fmt.Println("6) Feu sacrée : 3 âme d'hybride")
+	fmt.Println("7) Vent sacrée : 4 âme d'hybride")
+	fmt.Println("🥼 Matériaux :")
+	fmt.Println("8) Spectronyte : 1 âme de spectre")
+	fmt.Println("0) Retour")
+	fmt.Println("\n")
+	var saisie int
+	var num int
+	quit := false
+
+	for {
+		if quit { break }
+		_, err := fmt.Scanln(&saisie)
+
+		if err != nil {
+			fmt.Println("Valeur incorrect.")
+			continue
+		}
+		
+		switch saisie {
+		case 0 : 
+		quit = true
+			break
+		case 1 :
+			if b.Spectre >= 2 {
+				num = addInventory("Potion de vie", 1, i)
+				b.Spectre -= 2
+				fmt.Println("Potion de vie achetée.")
+				fmt.Println("Possède :", num)
+				fmt.Println("Âme de spectre possédées :", b.Spectre)
+			} else {
+				fmt.Println("Vous n'avez pas assez d'âme de spectre")
+			}
+		case 2 :
+			if b.Spectre >= 2 {
+				num = addInventory("Potion de MANA", 1, i)
+				b.Spectre -= 2
+				fmt.Println("Potion de mana achetée")
+				fmt.Println("Possède :", num)
+				fmt.Println("Âme de spectre possédées :", b.Spectre)			
+			} else {
+				fmt.Println("Vous n'avez pas assez d'âme de spectre")
+			}
+		case 3 :
+			if b.Spectre >= 3 {
+				num = addInventory("Potion de poison", 1, i)
+				b.Spectre -= 3
+				fmt.Println("Potion de poison achetée")
+				fmt.Println("Possède :", num)
+				fmt.Println("Âme de spectre possédées :", b.Spectre)
+			} else {
+				fmt.Println("Vous n'avez pas assez d'âme de spectre")
+			}
+		case 4 :
+			if b.Hybride >= 1 {
+				num = addInventory("Eau sacrée", 1, i)
+				b.Hybride -= 1
+				fmt.Println("Eau sacrée achetée")
+				fmt.Println("Possède :", num)
+				fmt.Println("Âme d'hybride possédées :", b.Hybride)
+			} else {
+				fmt.Println("Vous n'avez pas assez d'âme d'hybride")
+			}
+		case 5 : 
+			if b.Hybride >= 2 {
+				num = addInventory("Roche sacrée", 1, i)
+				b.Hybride -= 2
+				fmt.Println("Roche sacrée achetée")
+				fmt.Println("Possède :", num)
+				fmt.Println("Âme d'hybride possédées :", b.Hybride)
+			} else {
+				fmt.Println("Vous n'avez pas assez d'âme d'hybride")
+			}
+		case 6 : 
+			if b.Hybride >= 3 {
+				num = addInventory("Feu sacrée", 1, i)
+				b.Hybride -= 3
+				fmt.Println("Feu sacrée achetée")
+				fmt.Println("Possède :", num)
+				fmt.Println("Âme d'hybride possédées :", b.Hybride)
+			} else {
+				fmt.Println("Vous n'avez pas assez d'âme d'hybride")
+			}
+		case 7 :
+			if b.Hybride >= 4 {
+				num = addInventory("Vent sacrée", 1, i)
+				b.Hybride -= 4
+				fmt.Println("Eau sacrée achetée")
+				fmt.Println("Possède :", num)
+				fmt.Println("Âme d'hybride possédées :", b.Hybride)
+			} else {
+				fmt.Println("Vous n'avez pas assez d'âme d'hybride")
+			}
+		case 8 : 
+			if b.Spectre >= 1 {
+				 num = addInventory("Spectronyte", 1, i)
+				b.Spectre -= 1
+				fmt.Println("Spectronyte achetée")
+				fmt.Println("Possède :", num)
+				fmt.Println("Âme de spectre possédées :", b.Spectre)
+			} else {
+				fmt.Println("Vous n'avez pas assez d'âme de spectre")
+			}
+		default :
+		}
+		if !quit { fmt.Println("Voulez-vous acheter autre chose ?")}
+	}
+}
+
+func addInventory(s string, n int, i *[]inventory) int {
+	for j := range *i {
+		if (*i)[j].Nom == s {
+			(*i)[j].Nombre += n
+			return (*i)[j].Nombre
+		}
+	}
+	return 0
+}
