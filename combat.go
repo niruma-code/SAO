@@ -127,9 +127,9 @@ func combat(p *Personnage, m Monstre, b *bell) {
 			case 4:
 				if p.stats.MANA >= 1 {
 				 m.HP -= 1
-				fmt.Println(RED,"Vous envoyez", YELLOW,"ROMAIN COTTARD",RED, "pour qu'il lêche le CHIBRAX de l'ennemie !", RESET)
+				fmt.Println(RED,"Vous envoyez", YELLOW,"ROMAIN COTTAR",RED, "pour qu'il lêche le CHIBRAX de l'ennemie !", RESET)
 			}else {
-				fmt.Println(RED,"!!!-Il faut au moins 1 de MANA pour envoyer ce gros suceur de", YELLOW, "ROMAIN COTTARD-!!!", RESET)
+				fmt.Println(RED,"!!!-Il faut au moins 1 de MANA pour envoyer ce gros suceur de", YELLOW, "ROMAIN COTTAR-!!!", RESET)
 			}
 			case 5:
 				fmt.Println("Vous revenez au menu...")
