@@ -2,14 +2,11 @@ package main
 
 import "fmt"
 
-const RESET   = "\u001b[0m"
 const BOLD    = "\u001b[1m"
 const GOLD    = "\u001b[33m"   
 const WHITE   = "\u001b[37m"   
-const RED     = "\u001b[31m"
 const MAGENTA = "\u001b[35m"
 const CYAN    = "\u001b[36m"
-const GREEN   = "\u001b[32m"
 const BLUE    = "\u001b[34m"
 const BLINK   = "\u001b[5m"
 

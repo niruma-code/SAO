@@ -8,12 +8,6 @@ import (
 	"unicode"
 )
 
-const RESETT  = "\u001b[0m"
-const ROUGE   = "\u001b[31m"
-const BEIGE   = "\u001b[38;5;180m"
-const VERT    = "\u001b[32m"
-const MARRON  = "\u001b[38;5;94m"
-
 type Personnage struct {
 	nom    string
 	classe string
@@ -37,13 +31,13 @@ type Stats struct {
 func couleurRace(race string) string {
 	switch race {
 	case "Elfe":
-		return MARRON
+		return BROWN
 	case "Vampire":
-		return ROUGE
+		return RED
 	case "Humain":
 		return BEIGE
 	case "Slime":
-		return VERT
+		return GREEN
 	default:
 		return ""
 	}
@@ -63,13 +57,13 @@ func (c Personnage) DisplayInfo() {
 	fmt.Println("Classe du perso:", couleurRace(c.classe)+c.classe+RESET)
 	fmt.Println("-------------------")
 	fmt.Println("Stats du perso:")
-	fmt.Println("  HpMax du perso:", c.stats.HPmax)
-	fmt.Println("  HpActuel du perso:", c.stats.HPact)
-	fmt.Println("  DGT :", c.stats.DGT)
-	fmt.Println("  MANAmax :", c.stats.MANAmax)
-	fmt.Println("  MANA :", c.stats.MANA)
+	fmt.Println(GREEN,    "  HpMax",RESET, "du perso:   ",GREEN, c.stats.HPmax,RESET)
+	fmt.Println(GREEN,    "  HpActuel",RESET, "du perso:",GREEN, c.stats.HPact,RESET)
+	fmt.Println(RED,      "  DGT",RESET, ":             ",RED, c.stats.DGT,RESET)
+	fmt.Println(BLEUCLAIR,"  MANAmax",RESET, ":         ",BLEUCLAIR, c.stats.MANAmax,RESET)
+	fmt.Println(BLEUCLAIR,"  MANA",RESET, ":            ",BLEUCLAIR, c.stats.MANA,RESET)
 	fmt.Println("-------------------")
-	fmt.Println("Inventaire du perso:", c.invent)
+	fmt.Println(BROWN,"Inventaire",RESET, "du perso:", c.invent)
 }
 
 func getStats(race string) Stats {
@@ -128,7 +122,7 @@ func CreerPersonnage() Personnage {
 
 	fmt.Println("Choisissez votre race :")
 	for i, race := range races {
-		fmt.Printf("%d. %s%s%s\n", i+1, couleurRace(race.Nom), race.Nom, RESETT)
+		fmt.Println(i+1, ". "+couleurRace(race.Nom)+race.Nom+RESET) 
 	}
 
 	var numero int
@@ -137,7 +131,7 @@ func CreerPersonnage() Personnage {
 
 	raceChoisie := races[numero-1]
 	stats := getStats(raceChoisie.Nom)
-	fmt.Println("Vous avez choisi :", couleurRace(raceChoisie.Nom)+raceChoisie.Nom+RESETT)
+	fmt.Println("Vous avez choisi :", couleurRace(raceChoisie.Nom)+raceChoisie.Nom+RESET)
 	c.Init(nom, raceChoisie.Nom, []string{}, stats)
 	return c
 }

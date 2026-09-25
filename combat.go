@@ -6,10 +6,21 @@ import (
 	"math/rand"
 )
 
-const RESETTT   = "\u001b[0m"
-const REDD      = "\u001b[31m"
-const YELLOWW   = "\u001b[33m"
-const GREENN    = "\u001b[32m"
+const RESET      = "\u001b[0m"
+const RED        = "\u001b[31m"
+const YELLOW     = "\u001b[33m"
+const BLEUCLAIR  = "\u001b[36m"
+const BLEU       = "\033[34m"
+const BLEUFONCE  = "\033[38;5;18m"
+const LIGHTGREEN = "\033[38;5;120m"
+const GREEN      = "\u001b[32m"
+const DARKGREEN  = "\033[38;5;22m"
+const PURPLE     = "\u001b[35m"
+const BROWN      = "\u001b[38;5;94m"
+const ORANGE     = "\u001b[38;5;208m"
+const GREY       = "\033[90m" 
+const ROSE       = "\033[38;5;201m"
+const BEIGE   = "\u001b[38;5;180m"
 
 type Monstre struct {
 	Nom string
@@ -21,8 +32,8 @@ type Monstre struct {
 func foret(p *Personnage, b *bell) {
 	fmt.Println("\n")
 	fmt.Println("[-Vous etes dans la forêt,faites attention rebroussez chemin avant de mourir!-]")
-	fmt.Println("1.", REDD, "Se battre", RESETTT)
-	fmt.Println("2.", YELLOWW, "Rebrousser chemin", RESETTT)
+	fmt.Println("1.", RED, "Se battre", RESET)
+	fmt.Println("2.", YELLOW, "Rebrousser chemin", RESET)
 
 	var choix int
 	fmt.Scan(&choix)
@@ -30,9 +41,9 @@ func foret(p *Personnage, b *bell) {
 	if choix == 1 {
 		fmt.Println("\n")
 		fmt.Println("[-Qui voulez-vous affronter?-]")
-		fmt.Println("1.Spectre")
-		fmt.Println("2.Possédé")
-		fmt.Println("3.Hybride")
+		fmt.Println("1.", BLEUCLAIR, "Spectre", RESET)
+		fmt.Println("2.", BLEU, "Possédé", RESET)
+		fmt.Println("3.", BLEUFONCE, "Hybride", RESET)
 
 		var choixMonstre int
 		fmt.Scan(&choixMonstre)
@@ -52,19 +63,19 @@ func foret(p *Personnage, b *bell) {
 
 func combat(p *Personnage, m Monstre, b *bell) {
 	fmt.Println("\n")
-	fmt.Println("[Le DU-DU-DU-DUEL contre un", m.Nom, "commence!]")
+	fmt.Println(YELLOW, "[Le DU-DU-DU-DUEL contre un", m.Nom, "commence!]", RESET)
 
 	tour := 0 
 	
 	for p.stats.HPact > 0 && m.HP > 0 {
 		tour++ 
 		fmt.Println("\n ⚔️  |=== Tour de combat", tour," ===| ⚔️")
-		fmt.Println("Vous:", p.stats.HPact, "HP |", m.Nom, ":", m.HP, "HP")
-		fmt.Println(p.stats.MANA, "MANA restant")
-		fmt.Println("1.Attaquer")
-		fmt.Println("2.Résonances")
-		fmt.Println("3.Inventaire")
-		fmt.Println("4.Fuir")
+		fmt.Println("Vous:",GREEN, p.stats.HPact, "HP",RESET, " |", m.Nom, ":", GREEN, m.HP, "HP", RESET)
+		fmt.Println(BLEUCLAIR, p.stats.MANA, "    MANA", RESET, "restant")
+		fmt.Println("1.", RED, "Attaquer", RESET)
+		fmt.Println("2.", PURPLE, "Résonances", RESET)
+		fmt.Println("3.", BROWN, "Inventaire", RESET)
+		fmt.Println("4.  Fuir")
 
 		var choix int
 		fmt.Scan(&choix)
@@ -72,17 +83,18 @@ func combat(p *Personnage, m Monstre, b *bell) {
 		switch choix {
 		case 1:
 			m.HP -= p.stats.DGT
-			fmt.Println("Vous infligez", p.stats.DGT, "degats à", m.Nom,"!")
+			fmt.Println("Vous infligez", RED, p.stats.DGT, "degats", RESET, "à", m.Nom,"!")
 			if m.HP <= 0 {
 				fmt.Println(m.Nom,"est vaincu !")
 				finCombat(p, m, b, tour)
 				return
 			}
 		case 2:
-			fmt.Println("1. Coup de Poing (8 dégâts, 8 MANA)")
-			fmt.Println("2. Boule de Feu (18 dégâts, 18 MANA)")
-			fmt.Println("3. Dévotion Vampirique (vide tout ton MANA en dégâts, 150 MANA min)")
-			fmt.Println("4. Retour")
+			fmt.Println("1.", BROWN, "Coup de Poing", RESET, "(",RED,"8 dégâts",RESET,",",BLEUCLAIR,"8 MANA",RESET,")")
+			fmt.Println("2.", ORANGE, "Boule de Feu", RESET, "(",RED,"18 dégâts",RESET,",",BLEUCLAIR,"18 MANA",RESET,")")
+			fmt.Println("3.", RED, "Dévotion Vampirique", RESET, "(vide tout ton",BLEUCLAIR,"MANA",RESET, "en", RED, "dégâts", RESET, ",", BLEUCLAIR, "150 MANA", RESET, "min)")
+			fmt.Println("4.", GREEN, "ROMAIN COTTAR", RESET, "(",GREEN, "1 dégats",GREEN, ",",GREEN,"1 MANA",RESET,")")
+			fmt.Println("5.  Retour")
 
 			var choixComp int
 			fmt.Scan(&choixComp)
@@ -92,27 +104,34 @@ func combat(p *Personnage, m Monstre, b *bell) {
 				if p.stats.MANA >=  8 {
 					p.stats.MANA -=  8
 					m.HP -=  8
-					fmt.Println("Vous lancez Coup de Poing !  8 dégâts à", m.Nom,"!")
+					fmt.Println("Vous lancez", BROWN, "Coup de Poing", RESET, "!", RED, "8 dégâts", RESET, "à", m.Nom,"!")
 				} else {
-					fmt.Println("Pas assez de MANA !")
+					fmt.Println("Pas assez de", BLEUCLAIR, "MANA", RESET,  " !")
 				}
 			case 2:
 				if p.stats.MANA >=  18 {
 					p.stats.MANA -=  18
 					m.HP -= 18
-					fmt.Println("Vous lancez Boule de Feu !  18 dégâts à", m.Nom,"!")
+					fmt.Println("Vous lancez", ORANGE, "Boule de Feu", RESET, "!", RED, "18 dégâts", RESET, "à", m.Nom,"!")
 				} else {
-					fmt.Println("Pas assez de MANA !")
+					fmt.Println("Pas assez de", BLEUCLAIR, "MANA", RESET,  " !")
 				}
 			case 3:
 				if p.stats.MANA >=  150 {
 					m.HP -= p.stats.MANA
-					fmt.Println("Vous libérez toute votre énergie !", p.stats.MANA,"dégâts à", m.Nom,"!")
+					fmt.Println("Vous libérez toute votre", YELLOW, "énergie", RESET, "!", RED, p.stats.MANA,"dégâts", RESET, "à", m.Nom,"!")
 					p.stats.MANA = 0
 				} else {
-					fmt.Println("Il vous faut au moins 150 MANA pour cette résonance !")
+					fmt.Println("Il vous faut au moins", BLEUCLAIR, "150 MANA", RESET, "pour cette résonance !")
 				}
 			case 4:
+				if p.stats.MANA >= 1 {
+				 m.HP -= 1
+				fmt.Println(RED,"Vous envoyez", YELLOW,"ROMAIN COTTARD",RED, "pour qu'il lêche le CHIBRAX de l'ennemie !", RESET)
+			}else {
+				fmt.Println(RED,"!!!-Il faut au moins 1 de MANA pour envoyer ce gros suceur de", YELLOW, "ROMAIN COTTARD-!!!", RESET)
+			}
+			case 5:
 				fmt.Println("Vous revenez au menu...")
 			}
 
@@ -122,53 +141,53 @@ func combat(p *Personnage, m Monstre, b *bell) {
 				return
 			}
 		case 3:
-				fmt.Println("\n[--- Inventaire ---]")
-	for j := range ii {
-		if ii[j].Nombre > 0 && ii[j].Type != "" {
-			fmt.Println(j+1, ")", ii[j].Nom, "x", ii[j].Nombre)
-		}
-	}
-	fmt.Println("0) Retour")
+				fmt.Println(BROWN, "\n[--- Inventaire ---]", RESET)
+			for j := range ii {
+				if ii[j].Nombre > 0 && ii[j].Type != "" {
+					fmt.Println(j+1, ")", ii[j].Nom, "x", ii[j].Nombre)
+				}
+			}
+			fmt.Println("0) Retour")
 
-	var choixItem int
-	fmt.Scan(&choixItem)
+			var choixItem int
+			fmt.Scan(&choixItem)
 
-	if choixItem == 0 {
-		break
-	}
+			if choixItem == 0 {
+				break
+			}
 
-	idx := choixItem - 1
-	if idx < 0 || idx >= len(ii) || ii[idx].Nombre ==  0 {
-		fmt.Println("Choix invalide.")
-		break
-	}
+			idx := choixItem - 1
+			if idx < 0 || idx >= len(ii) || ii[idx].Nombre ==  0 {
+				fmt.Println("Choix invalide.")
+				break
+			}
 
-	ii[idx].Nombre--
+			ii[idx].Nombre--
 
-	if ii[idx].Type == "soin" {
-		p.stats.HPact += ii[idx].Effet
-		if p.stats.HPact > p.stats.HPmax {
-			p.stats.HPact = p.stats.HPmax
-		}
-		fmt.Println("Vous buvez", ii[idx].Nom, "! +", ii[idx].Effet, "HP")
-	} else if ii[idx].Type == "mana" {
-		p.stats.MANA += ii[idx].Effet
-		fmt.Println("Vous buvez", ii[idx].Nom, "! +", ii[idx].Effet, "MANA")
-	} else if ii[idx].Type == "degats" {
-		m.HP -= ii[idx].Effet
-		fmt.Println("Vous lancez", ii[idx].Nom, "! -", ii[idx].Effet, "HP au monstre")
-	} else {
-		fmt.Println("Cet objet ne peut pas être utilisé en combat.")
-	}
+			if ii[idx].Type == "soin" {
+				p.stats.HPact += ii[idx].Effet
+				if p.stats.HPact > p.stats.HPmax {
+					p.stats.HPact = p.stats.HPmax
+				}
+				fmt.Println("Vous buvez", ii[idx].Nom, "! +", GREEN, ii[idx].Effet, "HP", RESET)
+			} else if ii[idx].Type == "mana" {
+				p.stats.MANA += ii[idx].Effet
+				fmt.Println("Vous buvez", ii[idx].Nom, "! +", BLEUCLAIR, ii[idx].Effet, "MANA", RESET)
+			} else if ii[idx].Type == "degats" {
+				m.HP -= ii[idx].Effet
+				fmt.Println("Vous lancez", ii[idx].Nom, "! -", GREEN, ii[idx].Effet, "HP", RESET, "au monstre")
+			} else {
+				fmt.Println("Cet objet ne peut pas être utilisé en combat.")
+			}
 
-	if m.HP <= 0 {
-		fmt.Println(m.Nom, "est vaincu !")
-		finCombat(p, m, b, tour)
-		return
-	}
+			if m.HP <= 0 {
+				fmt.Println(m.Nom, "est vaincu !")
+				finCombat(p, m, b, tour)
+				return
+			}
 		case 4:
 			if m.Boss {
-				fmt.Println("\n[!!! IMPOSSIBLE DE FUIR LE GRAND LORD KODÏD !!!]")
+				fmt.Println(RED, "\n[!!! 🚧 IMPOSSIBLE DE FUIR LE GRAND LORD KODOÏD 🚧 !!!]", RESET)
 			} else {
 			fmt.Println("Vous tentez de fuir...")
 			if rand.Intn(100) < 80 {
@@ -179,7 +198,7 @@ func combat(p *Personnage, m Monstre, b *bell) {
 			}
 		}
 		default:
-			fmt.Println("Si tu fais rien, tu vas te faire hagar salement😈")
+			fmt.Println("Si tu fais rien, tu vas te faire hagar salement 😈")
 		}
 
 		if m.HP > 0 {
@@ -193,17 +212,17 @@ func combat(p *Personnage, m Monstre, b *bell) {
 	}
 	if armure {
 		degats = int(float64(m.Dgt) * 0.85)
-		fmt.Println("🛡️ Votre Armure du damné absorbe une partie des dégâts !")
+		fmt.Println("🛡️ Votre", GREY, "Armure du damné", RESET, "absorbe une partie des", RED, "dégâts", RESET, "!")
 	}
 	p.stats.HPact -= degats
-	fmt.Println(m.Nom, "vous attaque et vous inflige", degats, "dégâts !")
-	fmt.Println("Il vous reste", p.stats.HPact, "HP.")
+	fmt.Println(m.Nom, "vous attaque et vous inflige",RED, degats, "dégâts", RESET, "!")
+	fmt.Println("Il vous reste", GREEN, p.stats.HPact, "HP.", RESET)
 }
 
 		}
 
 		if p.stats.HPact <=  0 {
-			fmt.Println("\n Vous êtes mort...Votre âme retourne au cimetière")
+			fmt.Println("\n Vous êtes", RED, "mort", RESET, "...Votre âme retourne au", GREY, "cimetière 💀", RESET)
 			os.Exit(0)
 		}
 	}
@@ -211,8 +230,8 @@ func combat(p *Personnage, m Monstre, b *bell) {
 func finCombat(p *Personnage, m Monstre, b *bell, tour int) {
 	fmt.Println("Combat terminé en", tour, "tours !")
 	fmt.Println("\nL'âme de", m.Nom,"se libère...")
-	fmt.Println("1. Purifier l'âme (l'infuser dans ton arme)")
-	fmt.Println("2. Sceller l'âme dans la bell")
+	fmt.Println("1. Purifier", GREY, "l'âme", RESET, "(l'infuser dans ton arme)")
+	fmt.Println("2. Sceller", GREY, "l'âme", RESET, "dans la", YELLOW, "bell", RESET)
 
 	var choix int
 	fmt.Scan(&choix)
@@ -221,14 +240,14 @@ func finCombat(p *Personnage, m Monstre, b *bell, tour int) {
 		switch p.classe {
 		case "Vampire":
 			p.stats.MANAmax +=  10
-			fmt.Println("Ton arme absorbe l'âme ! +10 MANA")
+			fmt.Println("Ton arme absorbe", GREY, "l'âme",RESET, "!",BLEUCLAIR, "+10 MANA",RESET)
 		case "Humain":
 			p.stats.DGT +=  1
-			fmt.Println("Ton arme absorbe l'âme ! +1 DGT")
+			fmt.Println("Ton arme absorbe",GREY, "l'âme",RESET, "!", RED, "+1 DGT",RESET)
 		case "Slime":
 			p.stats.HPmax +=  5
 			p.stats.HPact +=  5
-			fmt.Println("Ton arme absorbe l'âme ! +5 HP max")
+			fmt.Println("Ton arme absorbe",GREY, "l'âme",RESET, "!",GREEN, "+5 HP", RESET, "max")
 		}
 	} else {
 		switch m.Nom {
@@ -239,6 +258,6 @@ func finCombat(p *Personnage, m Monstre, b *bell, tour int) {
 		case "Hybride":
 			b.Hybride += 1
 		}
-		fmt.Println("L'âme de", m.Nom, "est scellée dans ta bell.")
+		fmt.Println(GREY, "L'âme", RESET, "de", m.Nom, "est scellée dans ta", YELLOW, "bell", RESET, ".")
 	}
 }

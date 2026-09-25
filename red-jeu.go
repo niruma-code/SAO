@@ -6,10 +6,7 @@ const BLANC   = "\u001b[37m"
 const ROUGEE  = "\u001b[31m"
 const VIOLET  = "\u001b[35m"
 const VERTT   = "\u001b[32m"
-const ORANGE  = "\u001b[38;5;208m"
 const JAUNE   = "\u001b[33m"
-const BROWN   = "\u001b[38;5;94m"
-const ROSE    = "\033[38;5;201m"
 
 func main() {
 	fmt.Println("Bienvenue sur Soul Art Offline !")
@@ -52,8 +49,8 @@ func village(p *Personnage) {
 		fmt.Println("5.", VIOLET, "afficher les statistiques", BLANC)
 		fmt.Println("6.", ROSE, "s'entraîner avec le TryGoblin", BLANC)
 		fmt.Println("7.", ROUGEE, "aller à l'auberge", BLANC)
-		fmt.Println("8.Qui sont-ils ?")
-		fmt.Println("9.Quitter")
+		fmt.Println("8.  Qui sont-ils ?")
+		fmt.Println("9.  Quitter")
 
 		var choix int
 		fmt.Scan(&choix)
@@ -116,10 +113,11 @@ func village(p *Personnage) {
 			sommeil = AccessAuberge(p, sommeil)
 			if sommeil >=10 {
 				fmt.Println("\n |-La Paresse t'emmenera au cimetière...-|")
-				fmt.Println("[-]!!!LE GRAND , LE BEAU , LE FABULEUX , L'EXTRAORDINAIRE LORD KODOÏD EST APPARU!!![-]")
+				fmt.Println(RED,"[-]!!!LE GRAND , LE BEAU , LE FABULEUX , L'EXTRAORDINAIRE LORD KODOÏD EST APPARU!!![-]",RESET)
 				bossfinal := Monstre{Nom: "LORD KODOÏD", HP: 1000, Dgt: 30, Boss: true}
 				combat(p, bossfinal, &b)
 				sommeil = 0
+				
 			}
 		case  8:
 			sommeil = 0

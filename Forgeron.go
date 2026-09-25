@@ -6,12 +6,14 @@ import (
 
 func AccessForgeron(b *bell, i *[]inventory) {
 	fmt.Println("\n")
-	fmt.Println("=== Forgeron ===")
-	fmt.Println("Âme de spectre : ", b.Spectre)
-	fmt.Println("Âme de possédé : ", b.Possede)
-	fmt.Println("Âme d'hybride : ", b.Hybride)
+	fmt.Println(ORANGE,"=== Forgeron ===", RESET)
+	fmt.Println("\n")
+	fmt.Println(GREY,"Âme",RESET, "de",BLEUCLAIR, "spectre",RESET, ":", b.Spectre)
+	fmt.Println(GREY,"Âme",RESET, "de",BLEU, "possédé",RESET, ":", b.Possede)
+	fmt.Println(GREY,"Âme",RESET, "d'",BLEUFONCE, "hybride",RESET, ":", b.Hybride)
+	fmt.Println("\n")
 	fmt.Println("⚒️  Armure")
-	fmt.Println("1) Armure du damné : 5 âmes de possédés, 10 spectronytes")
+	fmt.Println("1)", BLEUFONCE, "Armure du damné",RESET, ":", GREY, "5 âmes", RESET, "de", BLEU, "possédés", GREY, "10 spectronytes", RESET)
 	fmt.Println("0) Retour")
 	fmt.Println("\n")
 	var saisie int
@@ -19,9 +21,9 @@ func AccessForgeron(b *bell, i *[]inventory) {
 	quit := false
 	armure := false
 	for {
-		if quit { break }
+		if quit { break } 
 		_, err := fmt.Scanln(&saisie)
-
+	
 		if err != nil {
 			fmt.Println("Valeur incorrect.")
 			continue
@@ -35,7 +37,7 @@ func AccessForgeron(b *bell, i *[]inventory) {
 			break
 		case 1 :
 			if armure { 
-				fmt.Println("Vous avez déjà acheté l'armure du damné")
+				fmt.Println("Vous avez déjà acheté", BLEUFONCE, "l'armure du damné",RESET)
 				break
 			}
 			for j := range *i {
@@ -51,13 +53,13 @@ func AccessForgeron(b *bell, i *[]inventory) {
 						(*i)[j].Nombre -= 10
 					}
 				}
-				fmt.Println("Armure du damné achetée.")
+				fmt.Println(BLEUFONCE,"Armure du damné",RESET, "achetée.")
 				fmt.Println("Possède :", num)
 				armure = true
 			} else {
 				fmt.Println("Vous n'avez pas les ressources nécessaires")
-				fmt.Println("Âme de possédé : ", b.Possede)
-				fmt.Println("Spectronyte : ", index)
+				fmt.Println(GREY,"Âme",RESET, "de possédé : ", b.Possede)
+				fmt.Println(BLEUFONCE, "Spectronyte",RESET, ":", index)
 			}
 			break
 		default :

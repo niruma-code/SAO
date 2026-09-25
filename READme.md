@@ -8,7 +8,7 @@
 
 | Armes | Chaque race possède une arme unique. Elles ne peuvent pas changer de classe d'arme en raison de leurs caractéristiques physiques. Elfe:Brindille (bâton), Vampire : Griffusion (Griffes du Vampire). Humain : Purificateur (un sabre). Slime : Gloubs (Les poings du Slime). |
 
-| Système de combat | Tour par tour, le personnage a le choix entre : le menu "Attaque" (attaquer avec son arme), le menu "Résonnance" (lancer une résonance), le menu "Inventaire" (utiliser un objet tel qu'une potion) et le menu "Fuir" (fuir le combat). |
+| Système de combat | Tour par tour, le personnage a le choix entre : le menu "Attaque" (attaquer avec son arme), le menu "Résonnance" (lancer une résonance), le menu "Inventaire" (utiliser un objet tel qu'une potion) et le menu "Fuir" (fuir le combat). Si une option est choisi mais qu'elle n'aboutit à rien (par exemple ouvrir son inventaire quand il y a rien dedans) cela fais passer le tour quand meme , de meme si le joueur rentre une valeure qui n'est pas de 1 à 4 (pour les menus) le tour passe et le monstre attaque|
 
 - Les combats se déroulent de façon simple : une attaque baisse les HP de l'opposant, et lorsqu'un personnage descend à 0, il meurt. Si le personnage joueur meurt, il revient au menu de choix de personnage.
 - Tant que le personnage a de la vie (HP), il peut lancer une attaque qui reproduit les dégâts (DGT) de son arme.
@@ -22,7 +22,7 @@
   - Pour l'Humain : purifier l'âme lui ajoute des DGT.
   - Pour le Slime : purifier l'âme lui ajoute des HP.
 - L'augmentation de la statistique dépend de la richesse de l'âme : plus l'âme est puissante, plus elle apporte de statistique. De même pour la revente : plus elle est rare, plus elle se revend chère.
-- Pour les armures : elles réduisent les dégâts subis de 15% (le Slime ne peut pas porter d'armure).
+- Pour l'armure : elles réduisent les dégâts subis de 15% .
 
 | Bestiaire | Il y a trois types de monstres que le joueur pourra rencontrer :
    Le Spectre qui permet d'avoir des âmes de spectres
@@ -34,7 +34,7 @@
 Objets :
 - Potion de vie (redonne 50 HP) = 2 âmes de spectre
 - Potion de MANA (redonne 50 MANA) = 2 âmes de spectre
-- Potion de poison (empoisonne l'ennemi à hauteur de 10 dégâts pendant 2 tours) = 3 âmes de spectre
+- Potion de poison (empoisonne l'ennemi à hauteur de 20) = 3 âmes de spectre
 
 Résonances éphémères :
 - Eau Sacrée = 1 âme d'hybride
@@ -47,7 +47,7 @@ Matériaux :
 
 | Forgeron | Le forgeron permet, en échange de 5 âmes de possédés et 10 spectronytes, de fabriquer l'armure du damné, qui réduit les dégâts subis de 15% (bien sûr, le Slime ne peut pas porter d'armure). |
 
-| Le TryGoblin | C'est un gobelin missionné par le chef du village pour permettre aux exorcistes de s'entraîner. Il possède 1000 HP et fait 1 dégât à chaque tour. Il sert principalement de test pour les exorcistes qui souhaitent tester leurs forces. |
+| Le TryGoblin | C'est un gobelin missionné par le chef du village pour permettre aux exorcistes de s'entraîner. Il possède 999999999 HP et fait 1 dégât à chaque tour. Il sert principalement de test pour les exorcistes qui souhaitent tester leurs forces. |
 
 **Playthrough :**
 

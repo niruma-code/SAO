@@ -2,23 +2,41 @@ package main
 
 import "fmt"
 
+const BLANCC      = "\u001b[0m"
+const BLEUCLAIRR  = "\u001b[36m"
+const BLEUU       = "\033[34m"
+const BLEUFONCEE  = "\033[38;5;18m"
+const GRIS        = "\033[90m" 
+const OORRANGEE   = "\u001b[38;5;208m"
+const JAUNEE      = "\u001b[33m"
+const GRISS       = "\033[90m" 
+const REDDD       = "\u001b[31m"
+const VIOLETT     = "\u001b[35m"
+const MARRONN     = "\u001b[38;5;94m"
+const OORANGE     = "\u001b[38;5;208m"
+const VERTTT      = "\u001b[32m"
+
 func AccessMarchand(b *bell, i *[]inventory) {
 	fmt.Println("\n")
-	fmt.Println("=== Marchand d'exorcisme ===")
-	fmt.Println("Âme de spectre : ", b.Spectre)
-	fmt.Println("Âme de possédé : ", b.Possede)
-	fmt.Println("Âme d'hybride : ", b.Hybride)
-	fmt.Println("🍶 Potions : ")
-	fmt.Println("1) Potion de vie : 2 âmes de spectres")
-	fmt.Println("2) Potion de mana : 2 âmes de spectres")
-	fmt.Println("3) Potion de poison :  3 âmes de spectres")
-	fmt.Println("👻 Résonances : ")
-	fmt.Println("4) Eau sacrée : 1 âme d'hybride")
-	fmt.Println("5) Roche sacrée : 2 âmes d'hybrides")
-	fmt.Println("6) Feu sacrée : 3 âme d'hybride")
-	fmt.Println("7) Vent sacrée : 4 âme d'hybride")
-	fmt.Println("🥼 Matériaux :")
-	fmt.Println("8) Spectronyte : 1 âme de spectre")
+	fmt.Println(JAUNEE, "=== Marchand d'exorcisme ===", BLANCC)
+	fmt.Println("\n")
+	fmt.Println(GRISS,"Âme",BLANCC, "de",BLEUCLAIRR, "spectre",BLANCC, ":", b.Spectre)
+	fmt.Println(GRISS,"Âme",BLANCC, "de",BLEUU, "possédé",BLANCC, ":", b.Possede)
+	fmt.Println(GRISS,"Âme",BLANCC, "d'",BLEUFONCEE, "hybride",BLANCC, ":", b.Hybride)
+	fmt.Println("\n")
+	fmt.Println(VERTTT,"🍶 Potions",BLANCC, ":")
+	fmt.Println("1) Potion de",REDDD, "vie",BLANCC, "   :",GRISS, "2 âmes",BLANCC, "de", BLEUCLAIRR, "spectres",BLANCC)
+	fmt.Println("2) Potion de",BLEUCLAIRR, "mana",BLANCC, "  :",GRISS, "2 âmes",BLANC, "de",BLEUCLAIRR, "spectres",BLANCC)
+	fmt.Println("3) Potion de",DARKGREEN, "poison",BLANCC, ":",GRISS, "3 âmes",BLANCC, "de",BLEUCLAIRR, "spectres",BLANCC)
+	fmt.Println("\n")
+	fmt.Println(VIOLETT,"👻 Résonances : ",BLANCC)
+	fmt.Println("4)",BLEUU, "Eau sacrée",BLANCC, "  :",GRISS, "1 âme", BLANCC, "d'",BLEUFONCEE, "hybride",BLANCC)
+	fmt.Println("5)",MARRONN, "Roche sacrée",BLANCC, ":", GRISS, "2 âmes",BLANCC, "d'",BLEUFONCEE, "hybride",BLANCC)
+	fmt.Println("6)",OORANGE, "Feu sacrée",BLANCC, "  :", GRISS, "3 âmes",BLANCC, "d'",BLEUFONCEE, "hybride",BLANCC)
+	fmt.Println("7)",LIGHTGREEN, "Vent sacrée", BLANCC, " :",GRISS, "4 âmes",BLANCC, "d'",BLEUFONCEE, "hybride",BLANCC)
+	fmt.Println("\n")
+	fmt.Println(MARRONN, "🥼 Matériaux :",BLANCC)
+	fmt.Println("8)",BLEUFONCEE, "Spectronyte",BLANCC, ":",GRISS, "1 âme",BLANCC, "de", BLEUCLAIRR, "spectre",BLANCC)
 	fmt.Println("0) Retour")
 	fmt.Println("\n")
 	var saisie int
@@ -102,7 +120,7 @@ func AccessMarchand(b *bell, i *[]inventory) {
 			if b.Hybride >= 4 {
 				num = addInventory("Vent sacrée", 1, i)
 				b.Hybride -= 4
-				fmt.Println("Eau sacrée achetée")
+				fmt.Println("Vent sacrée achetée")
 				fmt.Println("Possède :", num)
 				fmt.Println("Âme d'hybride possédées :", b.Hybride)
 			} else {

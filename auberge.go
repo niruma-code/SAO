@@ -5,11 +5,11 @@ import "fmt"
 
 func AccessAuberge(c *Personnage, sommeil int) int {
 	fmt.Println("\n")
-	fmt.Println("===🛏️ Auberge 🛏️===")
+	fmt.Println(VIOLET,"=== 🛏️ Auberge 🛏️ ===",RESET)
 	fmt.Println("C'est l'heure de rompiche")
 	c.stats.HPact = c.stats.HPmax
 	c.stats.MANA = c.stats.MANAmax
-	fmt.Println("Vous avez récupéré votre santé et mana")
+	fmt.Println("Vous avez récupéré votre",GREEN, "santé",RESET, "et",BLEUCLAIR, "mana",RESET)
 	fmt.Println("\n")
 	sommeil++
 	switch sommeil {
